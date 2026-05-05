@@ -45,10 +45,10 @@ npx skills add scribeless/skills --skill scribeless-api-integration
 - Help Center: https://help.scribeless.co/en/
 - API documentation: https://docs.scribeless.co/
 
-## Validate
+## Check
 
 ```bash
-npm run validate
+npx skills add . --list
 ```
 
 No npm package is required for distribution. The Skills CLI installs directly from the GitHub repository.
