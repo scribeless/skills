@@ -1,0 +1,8 @@
+interface:
+  display_name: "Scribeless Template Writer"
+  short_description: "Write handwritten mail copy"
+  brand_color: "#344698"
+  default_prompt: "Use $scribeless-template-writer to write a handwritten thank-you note."
+
+policy:
+  allow_implicit_invocation: true

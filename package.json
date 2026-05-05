@@ -1,0 +1,11 @@
+{
+  "name": "@scribeless/skills",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Public agent skills for Scribeless handwritten mail workflows.",
+  "scripts": {
+    "validate": "node scripts/validate-skills.mjs"
+  },
+  "license": "MIT"
+}

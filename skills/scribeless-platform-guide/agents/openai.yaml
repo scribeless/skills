@@ -1,0 +1,8 @@
+interface:
+  display_name: "Scribeless Platform Guide"
+  short_description: "Navigate the Scribeless app"
+  brand_color: "#344698"
+  default_prompt: "Use $scribeless-platform-guide to show me how to create a Scribeless campaign."
+
+policy:
+  allow_implicit_invocation: true

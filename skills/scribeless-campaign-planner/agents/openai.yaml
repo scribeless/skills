@@ -1,0 +1,8 @@
+interface:
+  display_name: "Scribeless Campaign Planner"
+  short_description: "Plan handwritten mail campaigns"
+  brand_color: "#344698"
+  default_prompt: "Use $scribeless-campaign-planner to plan a handwritten retention campaign."
+
+policy:
+  allow_implicit_invocation: true

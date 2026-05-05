@@ -1,0 +1,41 @@
+{
+  "name": "scribeless",
+  "version": "0.1.0",
+  "description": "Public skills for planning, building, and operating Scribeless handwritten mail workflows.",
+  "author": {
+    "name": "Scribeless",
+    "email": "team@scribeless.co",
+    "url": "https://www.scribeless.co/"
+  },
+  "homepage": "https://www.scribeless.co/",
+  "repository": "https://github.com/scribeless/skills",
+  "license": "MIT",
+  "keywords": [
+    "scribeless",
+    "direct-mail",
+    "handwritten-notes",
+    "campaigns",
+    "agent-skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Scribeless",
+    "shortDescription": "Build handwritten mail workflows with Scribeless.",
+    "longDescription": "Plan Scribeless campaigns, prepare recipient data, write handwritten templates, use the platform, and build API or automation integrations.",
+    "developerName": "Scribeless",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://www.scribeless.co/",
+    "privacyPolicyURL": "https://www.scribeless.co/privacy-policy",
+    "termsOfServiceURL": "https://www.scribeless.co/terms-and-conditions",
+    "defaultPrompt": [
+      "Plan a Scribeless direct mail campaign.",
+      "Clean recipient data for Scribeless.",
+      "Build a Scribeless API payload."
+    ],
+    "brandColor": "#344698"
+  }
+}

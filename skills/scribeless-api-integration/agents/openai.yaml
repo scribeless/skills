@@ -1,0 +1,8 @@
+interface:
+  display_name: "Scribeless API Integration"
+  short_description: "Connect apps to Scribeless"
+  brand_color: "#344698"
+  default_prompt: "Use $scribeless-api-integration to build a recipient creation request."
+
+policy:
+  allow_implicit_invocation: true

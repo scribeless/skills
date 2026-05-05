@@ -1,0 +1,8 @@
+interface:
+  display_name: "Scribeless Recipient Data Prep"
+  short_description: "Clean lists for Scribeless"
+  brand_color: "#344698"
+  default_prompt: "Use $scribeless-recipient-data-prep to validate my recipient CSV."
+
+policy:
+  allow_implicit_invocation: true
