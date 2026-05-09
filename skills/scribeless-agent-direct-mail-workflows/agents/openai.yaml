@@ -1,0 +1,8 @@
+interface:
+  display_name: "Scribeless Agent Workflows"
+  short_description: "Build API-led direct mail workflows"
+  brand_color: "#344698"
+  default_prompt: "Use $scribeless-agent-direct-mail-workflows to design an AI-assisted direct mail workflow."
+
+policy:
+  allow_implicit_invocation: true

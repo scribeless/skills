@@ -37,7 +37,7 @@
 2. Open Organization.
 3. Open API Keys.
 4. Create a new key only when ready to store it securely.
-5. Never paste the secret key into chat unless the user explicitly decides to and understands the risk.
+5. Do not paste the secret key into chat, docs, logs, screenshots, or client-side code. Store it in a secure credential field.
 
 ## Review Dashboard and QR Scans
 

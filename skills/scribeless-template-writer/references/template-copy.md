@@ -2,7 +2,7 @@
 
 ## Ecommerce Thank-You
 
-Hi {{first_name}},
+Hi {{firstName}},
 
 Thanks so much for your recent order. We really appreciate you choosing us, and I hope you love it when it arrives.
 
@@ -13,7 +13,7 @@ Best,
 
 ## B2B Follow-Up
 
-Hi {{first_name}},
+Hi {{firstName}},
 
 It was good learning more about {{company}}. I thought a handwritten note would stand out more than another email.
 
@@ -24,7 +24,7 @@ Best,
 
 ## Winback
 
-Hi {{first_name}},
+Hi {{firstName}},
 
 It has been a little while since we last heard from you, so I wanted to send a quick note.
 
@@ -41,3 +41,4 @@ Best,
 - The tone matches the sender relationship.
 - The copy does not rely on unsupported discounts, guarantees, or claims.
 - The QR destination and UTM tracking are ready before sending.
+- For API-provided HTML, content is self-contained, no JavaScript is required, and external images use HTTPS public URLs.
