@@ -1,7 +1,7 @@
 {
   "name": "scribeless",
   "version": "0.1.0",
-  "description": "Public skills for planning, building, and operating Scribeless handwritten mail workflows.",
+  "description": "Public skills for planning, building, and operating Scribeless handwritten mail and API-led direct mail workflows.",
   "author": {
     "name": "Scribeless",
     "email": "team@scribeless.co",
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "Scribeless",
     "shortDescription": "Build handwritten mail workflows with Scribeless.",
-    "longDescription": "Plan Scribeless campaigns, prepare recipient data, write handwritten templates, use the platform, and build API or automation integrations.",
+    "longDescription": "Plan Scribeless campaigns, prepare recipient data, write handwritten templates, use the platform, and build API-led direct mail automations and agent workflows.",
     "developerName": "Scribeless",
     "category": "Productivity",
     "capabilities": [
@@ -34,7 +34,8 @@
     "defaultPrompt": [
       "Plan a Scribeless direct mail campaign.",
       "Clean recipient data for Scribeless.",
-      "Build a Scribeless API payload."
+      "Build a Scribeless API payload.",
+      "Design an API-led direct mail agent."
     ],
     "brandColor": "#344698"
   }

@@ -33,6 +33,7 @@ description: Guide public Scribeless users through platform workflows in platfor
 - API keys: Settings > Organization > API Keys
 - Help Center: `https://help.scribeless.co/en/`
 - API docs: `https://docs.scribeless.co/`
+- Support: live chat in the platform or `team@scribeless.co`
 
 ## Guidance Rules
 
@@ -41,6 +42,7 @@ description: Guide public Scribeless users through platform workflows in platfor
 - Never expose, copy, or store API keys in the answer.
 - Warn that API keys are shown once after creation if the platform says so.
 - Do not submit a campaign, turn on an automation, or start checkout without explicit user confirmation.
+- If the user is blocked by account access, API setup, campaign status, billing, or rendering errors, route them to live chat or `team@scribeless.co` after giving the next visible troubleshooting step.
 
 ## References
 
