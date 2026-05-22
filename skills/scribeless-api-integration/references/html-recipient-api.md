@@ -95,8 +95,7 @@ Add an empty `div` with the `data-sqr` marker when the rendered HTML should incl
     "city": "London",
     "postal_code": "NW1 6XE",
     "country": "GB",
-    "status": "ready",
-    "is_rendered": true,
+    "status": "pending",
     "variables": {
       "externalId": "customer-123",
       "customMessage": "Thanks again",
