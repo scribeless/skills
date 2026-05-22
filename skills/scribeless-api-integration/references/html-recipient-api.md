@@ -1,6 +1,6 @@
 # HTML Recipient API
 
-Use this endpoint when a workflow generates the recipient's mail-piece HTML and wants Scribeless to render the recipient documents.
+Use this endpoint when a workflow generates the recipient's mail-piece HTML and wants Scribeless to render the recipient documents. It supports postcards, flat cards/notes, and letters.
 
 ## Product Keys
 
@@ -34,7 +34,7 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
           "color": "#111827",
           "fontFamily": "Arial, sans-serif"
         },
-        "html": "<main style=\"padding:24px;font-size:18px\"><h1>Hello {{ first_name }}</h1><p>Thanks for trying Scribeless.</p></main>"
+        "html": "<main style=\"padding:24px;font-size:18px\"><h1>Hello {{ first_name }}</h1><p>Thanks for trying Scribeless.</p><div data-sqr data-sqr-id=\"booking-link\" data-sqr-destination=\"https://example.com/book\" data-sqr-size=\"24mm\" style=\"width:24mm;height:24mm\"></div></main>"
       }
     },
     "data": {
@@ -64,6 +64,25 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
 - `data` is the recipient payload.
 - Use `data.variables` for custom values available for merge/personalization.
 
+## Smart QR Placeholders
+
+Add an empty `div` with the `data-sqr` marker when the rendered HTML should include a tracked Smart QR code.
+
+```html
+<div
+  data-sqr
+  data-sqr-id="booking-link"
+  data-sqr-destination="https://example.com/book"
+  data-sqr-size="24mm"
+  style="width:24mm;height:24mm"
+></div>
+```
+
+- `data-sqr-id` identifies the QR slot in the HTML. Use a unique value for each QR placeholder on the same side.
+- `data-sqr-destination` is the URL the QR code should send recipients to.
+- `data-sqr-size` controls the generated QR image size. CSS `width` and `height` are recommended so the layout reserves the right space before rendering.
+- The placeholder must be an explicitly closed `div` and should not contain child elements.
+
 ## Example Response
 
 ```json
@@ -88,7 +107,7 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
             "color": "#111827",
             "fontFamily": "Arial, sans-serif"
           },
-          "html": "<main style=\"padding:24px;font-size:18px\"><h1>Hello {{ first_name }}</h1><p>Thanks for trying Scribeless.</p></main>"
+          "html": "<main style=\"padding:24px;font-size:18px\"><h1>Hello {{ first_name }}</h1><p>Thanks for trying Scribeless.</p><div data-sqr data-sqr-id=\"booking-link\" data-sqr-destination=\"https://example.com/book\" data-sqr-size=\"24mm\" style=\"width:24mm;height:24mm\"></div></main>"
         }
       }
     }
@@ -98,16 +117,18 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
       "id": "22222222-2222-4222-8222-222222222222",
       "format": "pdf",
       "type": "postcard",
-      "src": "teams/team-id/campaigns/campaign-id/recipients/recipient-id/postcard.pdf",
+      "src": "DOCUMENT_STORAGE_PATH",
       "signed_url": "SIGNED_DOCUMENT_URL"
     },
     {
       "id": "33333333-3333-4333-8333-333333333333",
       "format": "preview",
       "type": "postcard",
-      "src": "teams/team-id/campaigns/campaign-id/recipients/recipient-id/postcard-1.png",
+      "src": "PREVIEW_STORAGE_PATH",
       "signed_url": "SIGNED_PREVIEW_URL"
     }
   ]
 }
 ```
+
+When validating an HTML recipient render for a user, show the returned preview image URLs (`documents` where `format` is `preview`) so they can inspect the rendered output before sending live traffic.

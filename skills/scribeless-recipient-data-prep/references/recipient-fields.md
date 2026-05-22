@@ -18,7 +18,7 @@ Use these output fields for Scribeless payloads:
 | `address.postalCode` | Required for reliable delivery |
 | `address.country` | Country value accepted by Scribeless, such as `US`, `GB`, `CA`, `AU`, or full country names shown in platform examples |
 | `variables` | Personalization fields not part of the address |
-| `html.front.html` | Optional top-level custom HTML for `POST /api/recipients/html` front side |
+| `html.front.html` | Required top-level custom HTML for `POST /api/recipients/html` front side |
 | `html.back.html` | Optional top-level custom HTML for `POST /api/recipients/html` back side |
 
 ## Common Column Synonyms

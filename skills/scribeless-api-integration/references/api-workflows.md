@@ -66,7 +66,7 @@ For standard `/api/recipients` requests, use a Pending recurring campaign for te
 
 ## Custom HTML Recipient Endpoint
 
-Use `POST https://platform.scribeless.co/api/recipients/html` when the source system generates the complete front and/or back artwork as HTML. This endpoint uses product keys rather than an existing campaign ID.
+Use `POST https://platform.scribeless.co/api/recipients/html` when the source system generates the complete mail-piece artwork as HTML. This endpoint uses product keys for postcards, flat cards/notes, and letters.
 
 ```json
 {
@@ -106,6 +106,7 @@ Rules for generated HTML:
 - `orientation` can be `landscape` or `portrait`.
 - `html.front` is required for non-envelope products.
 - `html.back` can be included for duplex/front-and-back output.
+- Use an empty `div data-sqr` placeholder for tracked Smart QR codes.
 - JavaScript is disabled.
 - Do not use external CSS, scripts, fetch/XHR, iframes, or form actions.
 - Inline `data:image/*` URLs are allowed.
@@ -122,7 +123,7 @@ Rules for generated HTML:
 6. Include `X-API-Key`.
 7. Map contact fields to recipient fields.
 8. Map extra personalization fields to `variables`.
-9. For full custom layouts, use `POST /api/recipients/html` and map generated HTML to `html.front` and/or `html.back`.
+9. For full custom layouts, use `POST /api/recipients/html` and map generated HTML to `html.front` and optional `html.back`.
 10. Test with one non-sensitive recipient before turning on.
 
 ## Review Checklist
@@ -133,6 +134,7 @@ Rules for generated HTML:
 - Required recipient fields are present.
 - Variables match the Scribeless template.
 - HTML content, when present, uses the custom HTML recipient endpoint and respects render limits.
+- Returned HTML recipient preview `signed_url` images have been shown to the user for visual review.
 - Duplicate prevention is handled in the source system or automation flow.
 - First standard campaign test sends go to a Pending recurring campaign.
 - Custom HTML render outputs are reviewed before live use.
