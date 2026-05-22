@@ -19,7 +19,7 @@ description: Build public Scribeless API and automation workflows for creating r
 4. Build mapping:
    - source contact/customer fields to recipient fields
    - source event fields to `variables`
-   - optional rendered HTML to `/api/recipients/html` `html.front` and/or `html.back`
+   - generated HTML to `/api/recipients/html` `html.front`, with optional `html.back`
    - source record IDs and run IDs for audit/dedupe
    - suppression rules and deduplication strategy
 5. Produce an example:
@@ -31,6 +31,7 @@ description: Build public Scribeless API and automation workflows for creating r
    - do not send live requests unless the user confirms
    - test standard campaign recipients against a Pending recurring campaign before activating it
    - review custom HTML rendered documents before using them in a live workflow
+   - show returned preview `signed_url` images to the user when validating an HTML recipient render
    - include retry/backoff guidance for transient failures
 
 ## API Basics
@@ -42,7 +43,7 @@ description: Build public Scribeless API and automation workflows for creating r
 - For `POST /api/recipients`, campaigns should already exist before sending recipients through the API.
 - Send standard recipients to a recurring campaign while it is still Pending for test previews; after activation, new API recipients may be processed and charged.
 - Custom HTML recipient rendering uses `product_key`, `include_envelope`, `orientation`, `html`, and `data`.
-- Product keys identify supported postcard, flat card, and letter formats for HTML rendering.
+- Product keys identify supported postcard, flat card/note, and letter formats for HTML rendering.
 
 ## Example Payload
 
@@ -76,6 +77,9 @@ description: Build public Scribeless API and automation workflows for creating r
 - `product_key` must match a supported product key.
 - `orientation` can be `landscape` or `portrait`.
 - `html.front` is required for non-envelope products. `html.back` can be included for duplex/front-and-back output.
+- Add Smart QR placeholders with an empty `div data-sqr` when the HTML should render a tracked QR code.
+- Give each QR slot on the same side a unique `data-sqr-id`, a `data-sqr-destination`, and a stable CSS size.
+- After a successful HTML recipient request, surface any returned `documents` with `format: "preview"` and `signed_url` so the user can inspect the rendered output.
 - Use self-contained HTML in each side's `html` value; JavaScript is disabled during rendering.
 - Do not rely on external stylesheets, scripts, fetch/XHR, iframes, or other network resources.
 - Inline `data:image/*` images are allowed.
