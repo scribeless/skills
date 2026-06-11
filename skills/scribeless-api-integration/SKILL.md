@@ -18,6 +18,7 @@ description: Build public Scribeless API and automation workflows for creating r
    - template variables required by the campaign
 4. Build mapping:
    - source contact/customer fields to recipient fields
+   - source email/domain fields to recipient `email` and `domain`
    - source event fields to `variables`
    - generated HTML to `/api/recipients/html` `html.front`, with optional `html.back`
    - source record IDs and run IDs for audit/dedupe
@@ -32,6 +33,7 @@ description: Build public Scribeless API and automation workflows for creating r
    - test standard campaign recipients against a Pending recurring campaign before activating it
    - review custom HTML rendered documents before using them in a live workflow
    - show returned preview `signed_url` images to the user when validating an HTML recipient render
+   - confirm whether the account has an active subscription or requires checkout before treating recipients as ready for fulfilment
    - include retry/backoff guidance for transient failures
 
 ## API Basics
@@ -42,7 +44,9 @@ description: Build public Scribeless API and automation workflows for creating r
 - API keys are created in platform settings.
 - For `POST /api/recipients`, campaigns should already exist before sending recipients through the API.
 - Send standard recipients to a recurring campaign while it is still Pending for test previews; after activation, new API recipients may be processed and charged.
+- Send recipient email addresses and account/customer domains as first-class `email` and `domain` fields instead of placing them in `variables`; Scribeless uses these fields for analytics and attribution.
 - Custom HTML recipient rendering uses `product_key`, `include_envelope`, `orientation`, `html`, and `data`.
+- For teams on a subscription, recipients move straight to `ready`. One-time recipients may remain `pending` until they are checked out.
 - Product keys identify supported postcard, flat card/note, and letter formats for HTML rendering.
 
 ## Example Payload
@@ -55,6 +59,8 @@ description: Build public Scribeless API and automation workflows for creating r
       "firstName": "Ada",
       "lastName": "Lovelace",
       "company": "Example Co",
+      "email": "ada@example.com",
+      "domain": "example.com",
       "address": {
         "address1": "123 Example St",
         "city": "Bristol",
