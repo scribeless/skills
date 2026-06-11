@@ -32,6 +32,7 @@ description: Build public Scribeless API and automation workflows for creating r
    - test standard campaign recipients against a Pending recurring campaign before activating it
    - review custom HTML rendered documents before using them in a live workflow
    - show returned preview `signed_url` images to the user when validating an HTML recipient render
+   - confirm whether the account has an active subscription or requires checkout before treating recipients as ready for fulfilment
    - include retry/backoff guidance for transient failures
 
 ## API Basics
@@ -43,6 +44,7 @@ description: Build public Scribeless API and automation workflows for creating r
 - For `POST /api/recipients`, campaigns should already exist before sending recipients through the API.
 - Send standard recipients to a recurring campaign while it is still Pending for test previews; after activation, new API recipients may be processed and charged.
 - Custom HTML recipient rendering uses `product_key`, `include_envelope`, `orientation`, `html`, and `data`.
+- For teams on a subscription, recipients move straight to `ready`. One-time recipients may remain `pending` until they are checked out.
 - Product keys identify supported postcard, flat card/note, and letter formats for HTML rendering.
 
 ## Example Payload
