@@ -64,6 +64,30 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
 - `data` is the recipient payload.
 - Use `data.variables` for custom values available for merge/personalization.
 
+## Billing and Checkout
+
+HTML recipients follow the team's billing setup.
+
+- If the team is on a subscription, successful HTML recipients move straight to `ready` and do not need checkout.
+- If the team is using one-time billing, successful HTML recipients can remain `pending` until they are paid for.
+- For one-time billing, fetch the active cart and checkout the cart before treating the recipients as ready for fulfilment.
+
+```bash
+curl "https://platform.scribeless.co/api/carts/active" \
+  -H "X-API-Key: API_KEY_HERE"
+```
+
+```bash
+curl -X POST "https://platform.scribeless.co/api/recipients/checkout" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: API_KEY_HERE" \
+  -d '{
+    "cartId": "CART_ID"
+  }'
+```
+
+Checkout may return a checkout or invoice URL when payment cannot be collected automatically. Recipients are not processed until payment is complete.
+
 ## Smart QR Placeholders
 
 Add an empty `div` with the `data-sqr` marker when the rendered HTML should include a tracked Smart QR code.
@@ -85,6 +109,8 @@ Add an empty `div` with the `data-sqr` marker when the rendered HTML should incl
 
 ## Example Response
 
+The returned recipient `status` depends on the team's billing setup. Teams on a subscription return `ready`; one-time billing can return `pending` until checkout is complete.
+
 ```json
 {
   "recipient": {
@@ -95,7 +121,7 @@ Add an empty `div` with the `data-sqr` marker when the rendered HTML should incl
     "city": "London",
     "postal_code": "NW1 6XE",
     "country": "GB",
-    "status": "pending",
+    "status": "ready",
     "variables": {
       "externalId": "customer-123",
       "customMessage": "Thanks again",

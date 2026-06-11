@@ -64,6 +64,16 @@ if (!response.ok) {
 
 For standard `/api/recipients` requests, use a Pending recurring campaign for tests so recipients generate previews without being mailed or charged. Activate the campaign only after the mapping, variables, and previews are correct.
 
+## Billing and Checkout
+
+Before considering an API workflow complete, confirm the billing path for the account and campaign.
+
+- For teams on a subscription, recipients process automatically.
+- One-time campaign or HTML recipient usage may require checkout before fulfilment starts.
+- For one-time campaign recipients, checkout with `POST /api/recipients/checkout` using `campaignId` or `campaignIds`.
+- For one-time HTML recipients, fetch the active cart with `GET /api/carts/active`, then checkout with `POST /api/recipients/checkout` using the returned `cartId`.
+- If checkout returns a payment URL, surface it to the user and do not describe the recipients as ready for fulfilment until payment is complete.
+
 ## Custom HTML Recipient Endpoint
 
 Use `POST https://platform.scribeless.co/api/recipients/html` when the source system generates the complete mail-piece artwork as HTML. This endpoint uses product keys for postcards, flat cards/notes, and letters.
@@ -124,7 +134,8 @@ Rules for generated HTML:
 7. Map contact fields to recipient fields.
 8. Map extra personalization fields to `variables`.
 9. For full custom layouts, use `POST /api/recipients/html` and map generated HTML to `html.front` and optional `html.back`.
-10. Test with one non-sensitive recipient before turning on.
+10. If the resulting recipients need one-time payment, checkout the active cart before fulfilment.
+11. Test with one non-sensitive recipient before turning on.
 
 ## Review Checklist
 
@@ -135,6 +146,7 @@ Rules for generated HTML:
 - Variables match the Scribeless template.
 - HTML content, when present, uses the custom HTML recipient endpoint and respects render limits.
 - Returned HTML recipient preview `signed_url` images have been shown to the user for visual review.
+- Billing path is understood: recipients on a subscription process automatically; one-time recipients may need checkout first.
 - Duplicate prevention is handled in the source system or automation flow.
 - First standard campaign test sends go to a Pending recurring campaign.
 - Custom HTML render outputs are reviewed before live use.
