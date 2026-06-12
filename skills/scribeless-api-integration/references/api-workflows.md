@@ -12,6 +12,8 @@ curl --location 'https://platform.scribeless.co/api/recipients' \
       {
         "firstName": "Ada",
         "lastName": "Lovelace",
+        "email": "ada@example.com",
+        "domain": "example.com",
         "address": {
           "address1": "123 Example St",
           "city": "Bristol",
@@ -41,6 +43,8 @@ const response = await fetch('https://platform.scribeless.co/api/recipients', {
     data: [{
       firstName: 'Ada',
       lastName: 'Lovelace',
+      email: 'ada@example.com',
+      domain: 'example.com',
       address: {
         address1: '123 Example St',
         city: 'Bristol',
@@ -63,6 +67,10 @@ if (!response.ok) {
 ## Standard Campaign State
 
 For standard `/api/recipients` requests, use a Pending recurring campaign for tests so recipients generate previews without being mailed or charged. Activate the campaign only after the mapping, variables, and previews are correct.
+
+## Email and Domain Attribution
+
+When the source system has a recipient email address, company domain, store domain, or account domain, map those values to top-level `email` and `domain` recipient fields. Do not put email addresses or domains in `variables` unless they are also needed as template merge fields. Scribeless stores `email` and `domain` separately for analytics and attribution.
 
 ## Billing and Checkout
 
@@ -132,10 +140,11 @@ Rules for generated HTML:
 5. Send `POST https://platform.scribeless.co/api/recipients`.
 6. Include `X-API-Key`.
 7. Map contact fields to recipient fields.
-8. Map extra personalization fields to `variables`.
-9. For full custom layouts, use `POST /api/recipients/html` and map generated HTML to `html.front` and optional `html.back`.
-10. If the resulting recipients need one-time payment, checkout the active cart before fulfilment.
-11. Test with one non-sensitive recipient before turning on.
+8. Map email/domain values to top-level `email` and `domain`.
+9. Map extra personalization fields to `variables`.
+10. For full custom layouts, use `POST /api/recipients/html` and map generated HTML to `html.front` and optional `html.back`.
+11. If the resulting recipients need one-time payment, checkout the active cart before fulfilment.
+12. Test with one non-sensitive recipient before turning on.
 
 ## Review Checklist
 
@@ -144,6 +153,7 @@ Rules for generated HTML:
 - API key is stored in the automation platform's secure credential field.
 - Required recipient fields are present.
 - Variables match the Scribeless template.
+- Email and domain values use top-level `email` and `domain` fields for analytics and attribution.
 - HTML content, when present, uses the custom HTML recipient endpoint and respects render limits.
 - Returned HTML recipient preview `signed_url` images have been shown to the user for visual review.
 - Billing path is understood: recipients on a subscription process automatically; one-time recipients may need checkout first.
