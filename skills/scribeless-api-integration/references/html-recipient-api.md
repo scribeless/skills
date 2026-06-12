@@ -40,6 +40,8 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
     "data": {
       "first_name": "Jane",
       "last_name": "Doe",
+      "email": "jane@example.com",
+      "domain": "example.com",
       "address": {
         "address1": "221B Baker Street",
         "city": "London",
@@ -62,6 +64,7 @@ curl -X POST "https://platform.scribeless.co/api/recipients/html" \
 - `html.front` is required for non-envelope products.
 - `html.back` can be included for duplex/front-and-back output.
 - `data` is the recipient payload.
+- Send `data.email` and `data.domain` as first-class fields when available. Scribeless uses them for analytics and attribution.
 - Use `data.variables` for custom values available for merge/personalization.
 
 ## Billing and Checkout
@@ -117,6 +120,8 @@ The returned recipient `status` depends on the team's billing setup. Teams on a 
     "id": "11111111-1111-4111-8111-111111111111",
     "first_name": "Jane",
     "last_name": "Doe",
+    "email": "jane@example.com",
+    "domain": "example.com",
     "address1": "221B Baker Street",
     "city": "London",
     "postal_code": "NW1 6XE",
