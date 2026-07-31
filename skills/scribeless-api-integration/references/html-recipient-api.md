@@ -91,6 +91,17 @@ curl -X POST "https://platform.scribeless.co/api/recipients/checkout" \
 
 Checkout may return a checkout or invoice URL when payment cannot be collected automatically. Recipients are not processed until payment is complete.
 
+## US Postcard Safe Zones
+
+For US no-envelope postcard HTML, keep creative content away from postage, mailing-address, and barcode/post-office marking areas. Public API starter templates are available for:
+
+| Product | Product key | Starter template |
+| --- | --- | --- |
+| 4x6 postcard | `4x6_postcard` | `/html-templates/us-postcard-4x6-safe-zones.html` |
+| 5x7 postcard | `5x7_postcard` | `/html-templates/us-postcard-5x7-safe-zones.html` |
+
+Use the API docs page `/getting-started/us-postcard-safe-zones` for diagrams and placement notes. Place Smart QR placeholders outside the postage, address, and barcode zones.
+
 ## Smart QR Placeholders
 
 Add an empty `div` with the `data-sqr` marker when the rendered HTML should include a tracked Smart QR code.
